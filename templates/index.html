@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カレンダーサンプル</title>
+    <link rel="stylesheet" href="{{ static_url('css/fullcalendar.min.css') }}"/>
+    <link rel="stylesheet" href="{{ static_url('css/style.css') }}" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ static_url('js/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('js/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('lang/ja.js') }}"></script>
+    <script>
+        //when reading page, do as follows;
+        $(document).ready(function(){
+
+        //calendar configuration
+        $('#calendar').fullCalendar({
+            height: 550,
+            lang: "ja",
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            selectable: true,
+            selectHelper: true,
+            navLinks: true,
+            events: {
+                url: 'http://localhost:8080/getCalendar',
+                error: function() {
+                    $('#script-warning').show();
+                }
+            },
+            select: function(start, end) {
+                var title = prompt("予定タイトル");
+                var eventData;
+                if (title) {
+                    eventData = {
+                        title: title,
+                        start: start,
+                        end: end
+                        };
+                    $('#Calendar').fullCalendar('renderEvent', eventData, true);
+                }
+                $('#calendar').fullCalendar('unseclet');
+                },
+                editable: true,
+                eventLimit: true,
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id='calendar'></div>
+</body>
+</html>
