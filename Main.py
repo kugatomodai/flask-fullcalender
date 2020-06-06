@@ -20,6 +20,8 @@ class GetCalendar(RequestHandler):
 
     def get(self):
         logging.info("GetCalendar [get]")
+
+        ###TODO getting japananese holiday from https://holidays-jp.github.io/api/v1/date.csv
         data = [
             {
                 "title": "All Day Event",
