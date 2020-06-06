@@ -1,62 +1,49 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カレンダーサンプル</title>
-    <link rel="stylesheet" href="{{ static_url('css/fullcalendar.min.css') }}"/>
-    <link rel="stylesheet" href="{{ static_url('css/style.css') }}" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ static_url('js/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ static_url('js/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ static_url('js/lang/ja.js') }}"></script>
-    <script>
-        //when reading page, do as follows;
-        $(document).ready(function(){
-            //tried getting hodliday information but it's not priority
-            //have to modify the data format
-            //$('#calendar').fullCalendar({
-                //events: 'https://holidays-jp.github.io/api/v1/date.json'
-            //});
-
-        //calendar configuration
-        $('#calendar').fullCalendar({
-            height: 550,
-            lang: "ja",
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay'
-            },
-            selectable: true,
-            selectHelper: true,
-            navLinks: true,
-            events: {
-                url: 'http://localhost:8080/getCalendar',
-                error: function() {
-                    $('#script-warning').show();
-                }
-            },
-            select: function(start, end) {
-                var title = prompt("予定タイトル");
-                var eventData;
-                if (title) {
-                    eventData = {
-                        title: title,
-                        start: start,
-                        end: end
-                        };
-                    $('#Calendar').fullCalendar('renderEvent', eventData, true);
-                }
-                $('#calendar').fullCalendar('unselect');
-                },
-                editable: true,
-                eventLimit: true,
-            });
-        });
-    </script>
-</head>
-<body>
-    <div id='calendar'></div>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+<h3 id='explanation'>
+    スケジュールをあなたのカレンダーに一括登録し、脳みそのストレージを解放しよう
+</h3>
+<div id='form'>
+    <form action＝"/post" method="post" class="form-inline">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for="weekNo">第</label>
+                    <select name="weekNo[]">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                    </select>
+                </td>
+                <td>
+                    <label for="week"></label>
+                    <select name="week[]">
+                        <option value="Mon">月</option>
+                        <option value="Tue">火</option>
+                        <option value="Wed">水</option>
+                        <option value="Thr">木</option>
+                        <option value="Fri">金</option>
+                        <option value="Sat">土</option>
+                        <option value="Sun">日</option>
+                    </select>　曜日
+                </td>
+                <td>
+                    <label for="title"> イベント名:</label>
+                    <input type="text" id="title">
+                </td>
+                <td>
+                    <button id="add" type="button">+</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <button type="submit">カレンダーに反映</button>
+    </form>
+</div>
+<p></p>
+<div id='calendar'></div>
+{% endblock %}
