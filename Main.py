@@ -1,19 +1,24 @@
 import json
 import logging
 import os
-import tornado.ioloop
+from flask import Flask, render_template
 
-from tornado.web import RequestHandler
-from tornado.options import options
+app = Flask(__name__)
 
+@app.route('/')
+def index():
+    #template_path=os.path.join(os.getcwd(), "templates"),
+    #static_path=os.path.join(os.getcwd(), "static")
+    return render_template('index.html', title='scheduling calendar')
+"""    
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("index.html")
+"""
 
+"""
 class GetCalendar(RequestHandler):
-    """
-    getting calendar
-    """
+    #getting calendar
 
     def initialize(self):
         logging.info("GetCalendar [initialize]")
@@ -59,9 +64,14 @@ app = tornado.web.Application([
     template_path=os.path.join(os.getcwd(), "templates"),
     static_path=os.path.join(os.getcwd(), "static"),
 )
+"""
 
 if __name__ == "__main__":
+    """
+    ## it's to delete
     options.parse_command_line()
     app.listen(8080)
     logging.info("server started")
     tornado.ioloop.IOLoop.instance().start()
+    """
+    app.run(debug=True)
