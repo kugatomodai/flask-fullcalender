@@ -9,10 +9,15 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="{{ static_url('js/moment.min.js') }}"></script>
     <script type="text/javascript" src="{{ static_url('js/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ static_url('lang/ja.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('js/lang/ja.js') }}"></script>
     <script>
         //when reading page, do as follows;
         $(document).ready(function(){
+            //tried getting hodliday information but it's not priority
+            //have to modify the data format
+            //$('#calendar').fullCalendar({
+                //events: 'https://holidays-jp.github.io/api/v1/date.json'
+            //});
 
         //calendar configuration
         $('#calendar').fullCalendar({
@@ -43,7 +48,7 @@
                         };
                     $('#Calendar').fullCalendar('renderEvent', eventData, true);
                 }
-                $('#calendar').fullCalendar('unseclet');
+                $('#calendar').fullCalendar('unselect');
                 },
                 editable: true,
                 eventLimit: true,
