@@ -3,12 +3,43 @@
 <h3 id='explanation'>
     スケジュールをあなたのカレンダーに一括登録し、脳みそのストレージを解放しよう
 </h3>
-
+<p> </p>
+<div id="time_range">
+    <select class="startMonth">
+        <option value="January">1月</option>
+        <option value="February">2月</option>
+        <option value="March">3月</option>
+        <option value="April">4月</option>
+        <option value="May">5月</option>
+        <option value="June">6月</option>
+        <option value="July">7月</option>
+        <option value="August">8月</option>
+        <option value="September">9月</option>
+        <option value="October">10月</option>
+        <option value="November">11月</option>
+        <option value="December">12月</option>
+    </select> -
+    <select class="endMonth">
+        <option value="January">1月</option>
+        <option value="February">2月</option>
+        <option value="March">3月</option>
+        <option value="April">4月</option>
+        <option value="May">5月</option>
+        <option value="June">6月</option>
+        <option value="July">7月</option>
+        <option value="August">8月</option>
+        <option value="September">9月</option>
+        <option value="October">10月</option>
+        <option value="November">11月</option>
+        <option value="December">12月</option>
+    </select>
+</div>
+<p> </p>
 <div id="input_pluralBox">
     <form action＝"/post" method="post" class="form-inline"></form>
     <div id="input_plural">
         <label for="weekNo[]"></label>
-        <select name="weekNo[]">
+        <select class="weekNo[]">
             <option value="all">全</option>
             <option value=1>第1</option>
             <option value=2>第2</option>
@@ -17,7 +48,7 @@
             <option value=5>第5</option>
         </select>
         <label for="week[]"></label>
-        <select name="week[]">
+        <select class="week[]">
             <option value="Mon">月</option>
             <option value="Tue">火</option>
             <option value="Wed">水</option>
@@ -27,7 +58,7 @@
             <option value="Sun">日</option>
         </select>　曜日
         <label for='title'>イベント名: </label>
-        <input type="text" class="form-control" placeholder="隔週予定">
+        <input type="text" class="form-control" class="title" placeholder=イベント>
         <input type="button" value="＋" class="add pluralBtn">
         <input type="button" value="－" class="del pluralBtn">
     </div>
