@@ -3,47 +3,34 @@
 <h3 id='explanation'>
     スケジュールをあなたのカレンダーに一括登録し、脳みそのストレージを解放しよう
 </h3>
-<div id='form'>
-    <form action＝"/post" method="post" class="form-inline">
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    <label for="weekNo">第</label>
-                    <select name="weekNo[]">
-                        <option value=1>1</option>
-                        <option value=2>2</option>
-                        <option value=3>3</option>
-                        <option value=4>4</option>
-                        <option value=5>5</option>
-                    </select>
-                </td>
-                <td>
-                    <label for="week"></label>
-                    <select name="week[]">
-                        <option value="Mon">月</option>
-                        <option value="Tue">火</option>
-                        <option value="Wed">水</option>
-                        <option value="Thr">木</option>
-                        <option value="Fri">金</option>
-                        <option value="Sat">土</option>
-                        <option value="Sun">日</option>
-                    </select>　曜日
-                </td>
-                <td>
-                    <label for="title"> イベント名:</label>
-                    <input type="text" id="title">
-                </td>
-                <td>
-                    <button id="add" type="button">+</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <p></p>
-    <button type="submit">カレンダーに反映</button>
-    </form>
+
+<div id="input_pluralBox">
+    <form action＝"/post" method="post" class="form-inline"></form>
+    <div id="input_plural">
+        <label for="weekNo[]"></label>
+        <select name="weekNo[]">
+            <option value="all">全</option>
+            <option value=1>第1</option>
+            <option value=2>第2</option>
+            <option value=3>第3</option>
+            <option value=4>第4</option>
+            <option value=5>第5</option>
+        </select>
+        <label for="week[]"></label>
+        <select name="week[]">
+            <option value="Mon">月</option>
+            <option value="Tue">火</option>
+            <option value="Wed">水</option>
+            <option value="Thr">木</option>
+            <option value="Fri">金</option>
+            <option value="Sat">土</option>
+            <option value="Sun">日</option>
+        </select>　曜日
+        <label for='title'>イベント名: </label>
+        <input type="text" class="form-control" placeholder="隔週予定">
+        <input type="button" value="＋" class="add pluralBtn">
+        <input type="button" value="－" class="del pluralBtn">
+    </div>
+    <p><button type="submit">カレンダーに反映</button></p>
 </div>
-<p></p>
-<div id='calendar'></div>
 {% endblock %}
